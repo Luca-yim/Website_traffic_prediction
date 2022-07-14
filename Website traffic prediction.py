@@ -17,8 +17,15 @@ data["Date"] = pd.to_datetime(data["Date"], format = "%d/%m/%Y")
 #print(data.info())
 
 #Plot of daily traffic
-plt.style.use('fivethirtyeight')
-plt.figure(figsize= (15, 10))
-plt.plot(data["Date"], data["Views"])
-plt.title(" Daily Traffic of Thecleverprogrammer.com ") 
+#plt.style.use('fivethirtyeight')
+#plt.figure(figsize=(15, 10))
+#plt.plot(data["Date"], data["Views"])
+#plt.title("Daily Traffic of Thecleverprogrammer.com")
+#plt.show()
+
+#Determine if the dataset is seasonal
+result = seasonal_decompose(data["Views"], model='multiplicative', period=30 )
+fig = plt.figure()
+fig = result.plot()
+fig.set_size_inches(15, 10)
 plt.show()
