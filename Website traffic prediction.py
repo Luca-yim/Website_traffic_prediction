@@ -24,8 +24,13 @@ data["Date"] = pd.to_datetime(data["Date"], format = "%d/%m/%Y")
 #plt.show()
 
 #Determine if the dataset is seasonal
-result = seasonal_decompose(data["Views"], model='multiplicative', period=30 )
-fig = plt.figure()
-fig = result.plot()
-fig.set_size_inches(15, 10)
+# result = seasonal_decompose(data["Views"], model='multiplicative', period=30 )
+# fig = plt.figure()
+# fig = result.plot()
+# fig.set_size_inches(15, 10)
+# plt.show()
+
+#finding p and q values
+pd.plotting.autocorrelation_plot(data["Views"])
+plot_pacf(data["Views"], lags = 100)
 plt.show()
