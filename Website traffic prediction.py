@@ -39,8 +39,13 @@ data["Date"] = pd.to_datetime(data["Date"], format = "%d/%m/%Y")
 p, d, q = 5, 1, 2
 model = sm.tsa.statespace.SARIMAX(data["Views"], order=(p, d, q), seasonal_order=(p, d, q, 12))
 model=model.fit()
-print(model.summary())
+#print(model.summary())
 
 #Predictions for the next 50 days
 predictions = model.predict(len(data), len(data)+50)
-print(predictions)
+#print(predictions)
+
+#Plotting predictions
+data["Views"].plot(legend=True, label="Training Data", figsize=(15, 10))
+predictions.plot(legend=True, label="Predictions")
+plt.show()
