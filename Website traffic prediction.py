@@ -40,3 +40,7 @@ p, d, q = 5, 1, 2
 model = sm.tsa.statespace.SARIMAX(data["Views"], order=(p, d, q), seasonal_order=(p, d, q, 12))
 model=model.fit()
 print(model.summary())
+
+#Predictions for the next 50 days
+predictions = model.predict(len(data), len(data)+50)
+print(predictions)
