@@ -30,7 +30,13 @@ data["Date"] = pd.to_datetime(data["Date"], format = "%d/%m/%Y")
 # fig.set_size_inches(15, 10)
 # plt.show()
 
-#finding p and q values
-pd.plotting.autocorrelation_plot(data["Views"])
-plot_pacf(data["Views"], lags = 100)
-plt.show()
+#finding p and q values for SARIMA model
+# pd.plotting.autocorrelation_plot(data["Views"])
+# plot_pacf(data["Views"], lags = 100)
+# plt.show()
+
+#Training SARIMA model
+p, d, q = 5, 1, 2
+model = sm.tsa.statespace.SARIMAX(data["Views"], order=(p, d, q), seasonal_order=(p, d, q, 12))
+model=model.fit()
+print(model.summary())
